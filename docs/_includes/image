@@ -1,0 +1,48 @@
+{% assign file = null %}
+{% unless include.file %}
+    {% assign file = include.url %}
+{% else %}
+    {% assign file = include.file %}
+{% endunless %}
+{% unless file contains 'http://' or file contains 'https://' %}
+    {% assign file = file |prepend: site.baseurl %}
+{% endunless %}
+{% assign caption = null %}
+{% unless include.caption %}
+    {% assign caption = include.description %}
+{% else %}
+    {% assign caption = include.caption %}
+{% endunless %}
+{% assign caption = caption | truncatewords: 150 %}
+{% assign max-width = null %}
+{% if include.max-width %}
+    {% assign max-width = include.max-width %}
+{% endif %}
+{% assign align = null %}
+{% if include.align == 'center' %}
+    {% assign align = 'float: center' %}
+{% elsif include.align == 'right' %}
+    {% assign align = 'float: right' %}
+{% elsif include.align == 'left' %}
+    {% assign align = 'float: left' %}
+{% endif %}
+{% if include.id %}
+    {% assign id_image = include.id %}
+{% endif %}
+{% unless id_image > 0 %}
+    {% assign id_image = 1 %}
+{% endunless %}
+{% capture figure %}
+<figure id="{{ include.id | default: id_image }}" class="image {{ id_image | prepend: 'image-'}} {{ include.class }}" style="{% if align %}{{align}};{%endif%}">
+    <img src="{{ file }}" alt="{{ caption }}" style="{% if max-width %}max-width: {{ max-width }};{% endif %}" >
+    <figcaption>{{ caption  }}</figcaption>
+</figure>
+{% endcapture %}
+{% if include.text %}
+    {% capture div %}<div ><p>{{ figure }}{{ include.text }}</p></div>{% endcapture %}
+    {% assign div = div | markdownify %}
+{{div}}
+{% else %}
+    {{figure}}
+{% endif %}
+{% assign id_image = id_image | plus: 1 %}
