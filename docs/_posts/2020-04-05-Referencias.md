@@ -18,4 +18,6 @@ Abaixo listo as referências que uso para construir meus conhecimentos e anotaç
  * [Live Spice](http://www.livespice.org/)
  * [VCV Rack - Free Euro Rack](https://vcvrack.com/)
  * [SyntherJack - DIY sound synthesizers and me](https://syntherjack.net/category/project/)
-
+ * [Beginners Guide to EuroRack: Case Basics...](https://reverb.com/news/beginners-guide-to-eurorack-case-basics-oscillators-filters)
+ * [Arduino no VC Rack](https://github.com/EMC23/arduino-vcvrack)
+ * [EuroRack na Wikipedia](https://en.wikipedia.org/wiki/Eurorack)
